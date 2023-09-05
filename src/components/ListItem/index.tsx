@@ -9,7 +9,6 @@ type Props = {
 export const ListItem = ({ item }: Props) => {
     const [isChecked, setIsChecked] = useState(item.done);
 
-    console.log(isChecked + ' ' + item.name);
     return(
         <C.Container $done={isChecked}>
             <input type="checkbox" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} />
