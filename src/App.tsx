@@ -2,10 +2,11 @@ import { useState } from 'react';
 import * as Components from './App.styles';
 import { Item } from "./types/Item";
 import { ListItem } from './components/ListItem';
+import { AddArea } from './components/AddArea';
 
 const App = () => {
   const [list, setList] = useState<Item[]>([
-    { id: 4, name: 'Get rich', done: false },
+    { id: 1, name: 'Get rich', done: false },
     {
       id: 2,
       name: 'Do react course',
@@ -13,12 +14,23 @@ const App = () => {
     },
   ]);
 
+  const handleAddNewTask = (taskName: string) => {
+    let newList = [...list];
+    
+    newList.push({
+      id: newList.length+1,
+      name: taskName,
+      done: false
+    });
+    setList(newList);
+  }
+
   return (
       <Components.Container>
         <Components.Area>
           <Components.Header> Todo List </Components.Header>
 
-          {/* Add new todo */}
+          <AddArea onEnter={handleAddNewTask} />
 
           {
             list.map((item, index) => (
