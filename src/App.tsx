@@ -25,6 +25,16 @@ const App = () => {
     setList(newList);
   }
 
+  const changeTaskStatus = (itemId: number, status: boolean) => {
+    let newList = [...list];
+
+    newList.forEach(newItem => {
+      if (newItem.id === itemId) newItem.done = status;
+    });
+
+    setList(newList);
+  }
+
   return (
       <Components.Container>
         <Components.Area>
@@ -35,7 +45,7 @@ const App = () => {
           {
             list.map((item, index) => (
               <div>
-                <ListItem key={index} item={item} />
+                <ListItem key={index} item={item} changeStatus={changeTaskStatus} />
               </div>
             ))
           }
